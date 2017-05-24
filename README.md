@@ -1,2 +1,2 @@
-# nextcloud
-Nextcloud RPM packaging
+# Nextcloud
+Nextcloud community contributed RPM packaging
