@@ -11,7 +11,7 @@ BUILD_NUMBER?=DEV
 DONE = echo -e "\e[31m✓\e[0m \e[33m$@\e[0m \e[32mdone\e[0m"
 TOOLS="rpmdevtools mock"
 NTOOLS:=$(shell rpm -qa "$(TOOLS)" | wc -l)
-PKG:=$(shell ls pkg/$(NAME)-$(VERSION)*.noarch.rpm)
+PKG:=$(shell if [ -d pkg ]; then ls pkg/$(NAME)-$(VERSION)*.noarch.rpm; else echo 0; fi)
 
 help:: ## Show this help
 	echo -e "\n$(NAME) packaging: Version \033[32m$(VERSION)\033[0m Release: \033[1m$(BUILD_NUMBER)\033[0m\n"
