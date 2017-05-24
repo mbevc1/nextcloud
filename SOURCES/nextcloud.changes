@@ -1,0 +1,261 @@
+-------------------------------------------------------------------
+Mon May 24 18:28:21 UTC 2017 - marko.bevc@gmail.com
+
+- upstram update to version 12.0.0
+  no changelog from upstream at this time
+  See https://github.com/nextcloud/server/issues?q=is%3Aissue+milestone%3A%22Nextcloud+12.0%22+is%3Aclosed
+
+-------------------------------------------------------------------
+Fri Apr 28 22:46:46 UTC 2017 - ecsos@opensuse.org
+
+- fix boo#1036756: package security issue
+
+-------------------------------------------------------------------
+Mon Apr 24 18:09:20 UTC 2017 - adamradovits12@hotmail.com
+
+- upstream update to version 11.0.3
+  * Server
+    - Use the correct principal for shared addressbooks 
+	  (server/3608)
+    - Fix saving backup codes by using a correct data uri 
+	  (server/3652)
+    - Update icewind/streams to 0.5.2 (server/32931)
+    - Fix string comparison and return docs (server/3665)
+    - Typecast shared mount's storage_id to int as documented
+      + some refactor to avoid similar bugs (server/3658)
+    - Use a proper date format for transfer ownership 
+	  (server/3700)
+    - DAV sharing permissions should not depend on the order 
+	  (server/3722)
+    - Add new user agent of windows 10 dav backend 
+	  (server/37641)
+    - Add back appstoreenabled config switch (server/37671)
+    - Call right function after sudo mode (server/3820)
+    - Dont allow empty wildcard search (server/3842)
+    - Remove single quotes around search query like in 
+	  user search (server/3849)
+    - Fix mimetype detection on public uploads for the 
+	  workflow engine (server/3765)
+    - Fix branding and show Nextcloud (server/39691)
+    - Fix reshare with user activity message (server/39812)
+    - Create correct VCard and return correct error codes 
+	  (server/4029)
+    - Prevent migration from ownCloud 10 to Nextcloud 11 
+	  (server/34151)
+    - Make sure transparency is an integer when saving a 
+	  calendar (server/4167)
+    - Make public links work with master key (server/42071)
+    - Don't try to render the avatars if avatars are 
+	  disabled (server/4214)
+    - Reduce error message text (server/42281)
+    - Don't list on public calendar endpoints (server/4229)
+    - Fix upload of folders in Chrome (server/4154)
+    - Make sure blob columns are correctly converted as 
+	  parameters (server/4233)
+    - Save the scope of an auth token in the session 
+	  (server/4225)
+    - Take share by mail into consideration if we calculate 
+	  the access list (server/4242)
+    - Also add the root of external storages to the file id 
+	  list (server/4237)
+    - Fix LDAP description (server/42382)
+    - Remove the double password confirmation on changing 
+	  cron (server/4236)
+    - Fix scheduling plugin on legacy caldav endpoint 
+	  (server/4235)
+    - Directly fix invalid values of DTEND and DTSTART 
+	  (server/4234)
+    - Make JobList::next() lock free (server/4254)
+    - Don't remove owner property for public calendars 
+	  (server/4272)
+    - Add capabilities for share by mail (server/42511)
+    - Dont use the permissions mask while scanning 
+	  (server/4278)
+    - Add missing maintenance plugin to new DAV endpoint 
+	  (server/4290)
+    - Fix bug with shared_by for own calendars if shared 
+	  (server/4301)
+    - Translation string corrected > 1 user (server/4377)
+  * Activity
+    - Fix activities for "Files drop" on external storages 
+	  (activity/118)
+  * User_SAML
+    - Bump to php-saml 2.10.5 (user_saml/1001)
+  * Logreader
+    - Small screen layout improvements 
+	  (logreader/2bcd915969386ceb77c7f91dfd5fc19fd3212346
+    - Fix log filtering 
+	  (logreader/4095dfc62dcceb3c59a3f581baa5589737d0e6f3)
+    - Greatly speedup log iteration 
+	  (logreader/71a4c6849641f821e80d96674c57a69fe7a8aa9e)
+    - Search more rows 
+	  (logreader/b9d00b5599ac8a76862895266f1c23096391aad8)
+    - Stop iterating if we dont have a valid file handle 
+	  (logreader/a87a8e653ecae5efef6342e645b98f2878219c87)
+    - Don't return a LogIterator on a broken handle 
+	  (logreader/39069108f99d463b1cb8bc944f3ef24324b9f43d)
+    - More robust log iteration 
+	  (logreader/c0eb04d55bf1dee94ef523dae0e3b0e6afc272a6)
+    - Use proper iso date format 
+	  (logreader/13a31181a6d72d084797a71f49f2c5edee8c8dae)
+    - Automatically try to fix some common escape errors from 
+	  copy-pasted log entries 
+	  (logreader/031db2a7f9b9f8cee42acf6eae7d993d31d4660a)
+    - Fix stack trace parsing of incorrectly escaped logentries 
+	  (logreader/538667770edfdd48374ef33e9c15498ed98ece60)
+    - Highlight entries from the same request when clicking 
+	  on an entry 
+	  (logreader/2d1ccd0e4cca32220fcbe0b4d79d1cd23f0e73a5)
+    - Fix copy paste info searchfield 
+	  (logreader/0e91b2f46649a720feb7c3b6b8266b8657db5574)
+    - Fix reset search after 0 results 
+	  (logreader/50bec8ecf7edd81cfb96a35089283c0d879b41f3)
+    - Allow searching for requestId and user 
+	  (logreader/7f84e55bb4a1e4086ab0918a6bf58ad3885bbd91)
+    - Allow searching in url 
+	  (logreader/7833d97cf85fd351d2f7550d67d21bd0c2a815f4)
+    - Fix infinite scroll 
+	  (logreader/cbe874c6c068b9156ad8456edf31d112da40cbc9)
+    - Dont show loading indicator if we already have entries 
+	  (logreader/d26a08dc0540126177e8d20c3e243b44c5a399c4)
+  * Gallery
+    - Fix upload after core changes 
+	  (gallery/b4ac4429841cfe2b7ea260dfb37fcde25580143c2)
+    - Update JavaScript libraries (gallery/247)
+
+-------------------------------------------------------------------
+Thu Mar  2 09:29:20 UTC 2017 - jengelh@inai.de
+
+- Remove empty %postun and redundant %clean.
+- Ensure summary/description is neutral.
+
+-------------------------------------------------------------------
+Tue Feb 28 22:50:25 UTC 2017 - ecsos@opensuse.org
+
+- upstream update to version 11.0.2
+  * Server
+    - Use login name to fix password confirm with ldap users 
+      (server/2953)
+    - Change the row-format before changing the collation 
+      (server/3063)
+    - Generate correct path for owner and use the display name 
+      (server/3080)
+    - Markdown support for app descriptions (server/3117)
+    - Fix style in comment (server/3143)
+    - Escape the name for the jquery selector (server/3138)
+    - Define spreed calls (server/3115)
+    - LDAP Backend OCS Api (server/3213)
+    - Fix Sharing app description (server/3397)
+    - Fix shared-as-busy events for owner (server/3363)
+    - Use correct theming when returning the defaults (server/3399)
+    - Filter out sensitive appconfig values (server/3400)
+    - Add transifex config for sharebymail (server/3423)
+    - Update the email in the accounts table as well (server/3411)
+    - Don't log the password on confirmPassword when LDAP throws an 
+      exception (server/3414)
+    - Make sure ownCloud 8.2 activities also can get displayed 
+      (server/3412)
+    - Popovermenu backport (server/3286)
+    - Set vendor during install (server/3426)
+    - Make sure the file information is available when sending the 
+      email (server/3433)
+    - Add profile data to provisioning api (server/3259)
+    - Fix detection of the new iOS app (server/3431)
+    - Add integration tests for legacy DAV endpoints (server/3445)
+    - Make sure invalid images don't flood the log file 
+      (server/3440)
+    - Fix printing backup code (server/3510)
+    - Fix cookie name (nctoken instead of octoken) (server/3511)
+    - LDAP's checkPassword should only catch when a user was not 
+      found (server/3493)
+    - Return unknown free space from nullstorage (server/3508)
+    - Fix for address book data lost when any user receiving a 
+      share is deleted (server/3499)
+    - Rename database password toggle (server/3500)
+    - Popovermenu files css fix (server/3494)
+    - Add screensharing icon (server/3481)
+    - Fix misleading wording: searching is affected, not user 
+      access (server/3560)
+    - Backport of Fix Broken UUID Attribute Detection (server/3528)
+  * Activity
+    - Make sure integer like names are still strings (activity/103)
+    - Fix activities for public uploads (activity/113)
+    - Show the parent as target when the file was not renamed 
+      (activity/114)
+    - Fix activities for "Files drop" on external storages 
+      (activity/118)
+  * SAML & SSO
+    - Setup account later (user_saml/79)
+  * Serverinfo
+    - Fix SQL syntax error on MariaDB 10.0.27 and 10.1.19 
+      (serverinfo/77)
+    - Don't throw an error when /proc/meminfo is not readable 
+      (serverinfo/76)
+  * Survey_Client
+    - Fix problem when checking size with dash in DB name 
+      (survey_client/50)
+
+-------------------------------------------------------------------
+Fri Jan 27 10:18:35 UTC 2017 - guoyunhebrave@gmail.com
+
+- Add php-openssl dependency
+
+-------------------------------------------------------------------
+Mon Jan 23 17:58:01 UTC 2017 - ecsos@opensuse.org
+
+- upstream update to version 11.0.1
+
+-------------------------------------------------------------------
+Wed Dec 14 17:28:37 UTC 2016 - ecsos@opensuse.org
+
+- upstream update to version 11.0.0
+
+-------------------------------------------------------------------
+Fri Sep 30 19:05:50 UTC 2016 - ecsos@opensuse.org
+
+- upstream update to version 10.0.1
+
+-------------------------------------------------------------------
+Sat Aug 27 10:27:46 UTC 2016 - ecsos@opensuse.org
+
+- upstream update to version 10.0.0
+
+-------------------------------------------------------------------
+Sun Aug  7 16:52:22 UTC 2016 - chris@computersalat.de
+
+- update spec file
+  * osc service localrun format_spec_file
+  * update Source with full URL
+  * simplify deps mainly for openSUSE
+
+-------------------------------------------------------------------
+Sat Jul 23 12:33:00 UTC 2016 - ecsos@opensuse.org
+
+- enable HSTS to prevent the warning "The Strict-Transport-Security
+  HTTP header is not configured" in admin-page
+- turn maintenance:mode off after upgrade
+
+-------------------------------------------------------------------
+Thu Jul 21 15:17:28 CEST 2016 - asemen@suse.de
+
+- upstream update to version 9.0.53 (bsc#989998)
+
+-------------------------------------------------------------------
+Fri Jul  8 17:31:32 UTC 2016 - ecsos@opensuse.org
+
+- make apache_secure_data more restrictiver
+- add missing .user.ini
+- move README and README.SELinux to docdor to fix message code 
+  integrity check
+
+-------------------------------------------------------------------
+Tue Jul  5 15:16:35 CEST 2016 - asemen@suse.de
+
+- upstream update to version 9.0.52
+
+-------------------------------------------------------------------
+Fri Jul  1 14:02:22 CEST 2016 - asemen@suse.de
+
+- initial build nextcloud 9.0.51
+
+
