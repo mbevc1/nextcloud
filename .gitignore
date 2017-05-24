@@ -1,0 +1,4 @@
+*~
+*.log
+SOURCES/*.bz2
+SOURCES/*.gz
