@@ -15,7 +15,7 @@ the response body.
 
 ## Tips
 
-Produced RPM are saved to `pkg/` folder where you can also find latest builds
+Produced RPM are saved to [`pkg/`](https://github.com/mbevc1/nextcloud/tree/master/pkg) folder where you can also find latest builds
 in this repo.
 
 ## Authors
