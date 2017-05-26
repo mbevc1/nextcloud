@@ -11,7 +11,7 @@ BUILD_NUMBER?=DEV
 DONE = echo -e "\e[31m✓\e[0m \e[33m$@\e[0m \e[32mdone\e[0m"
 TOOLS="rpmdevtools mock"
 NTOOLS:=$(shell rpm -qa "$(TOOLS)" | wc -l)
-PKG:=$(shell if [ -d pkg ]; then ls pkg/$(NAME)-$(VERSION)*.noarch.rpm; else echo 0; fi)
+PKG:=$(shell if [ -d pkg ]; then ls RPMS/$(NAME)-$(VERSION)*.noarch.rpm; else echo 0; fi)
 
 help:: ## Show this help
 	echo -e "\n$(NAME) packaging: Version \033[32m$(VERSION)\033[0m Release: \033[1m$(BUILD_NUMBER)\033[0m\n"
@@ -34,7 +34,7 @@ srpm: prepare ## Build a source rpm
 rpm: srpm ## Build an rpm from the sourcerpm
 	mock --rebuild $(CWD)/SRPMS/$(NAME)*.src.rpm --resultdir=$(CWD)/RPMS/ --define "__version $(VERSION)" --define "__release $(BUILD_NUMBER)"
 	cp RPMS/$(NAME)-$(VERSION)*.noarch.rpm pkg/
-	echo -e "Package saved to: \e[31m`ls pkg/$(NAME)-$(VERSION)*.noarch.rpm`\e[0m"
+	echo -e "Package saved to: \e[31m`ls RPMS/$(NAME)-$(VERSION)*.noarch.rpm`\e[0m"
 	$(DONE)
 
 clean: ## Clean up the workspace
@@ -51,6 +51,7 @@ devbuild: prepare ## Build a dev version, bypassing mock (useful for debugging R
 
 signrpm: ## Sign the rpm with the gpg key
 	rpmsign --addsign $(CWD)/$(PKG)
+	mv -f $(CWD)/$(PKG) pkg/
 	$(DONE)
 
 signrepo: ## Sign the repo key

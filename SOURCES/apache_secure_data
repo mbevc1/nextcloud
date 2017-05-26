@@ -1,4 +1,4 @@
-lias /nextcloud "@DATAPATH@/"
+Alias /nextcloud "@DATAPATH@/"
 <Directory "@DATAPATH@">
     Options +FollowSymLinks
     AllowOverride All
