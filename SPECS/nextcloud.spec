@@ -29,7 +29,7 @@
 %endif
 
 %define base_version 12.0.0
-%define rel %(echo 1)
+%define rel %(echo 2)
 
 Name:           nextcloud
 Version:        %{base_version}
@@ -53,7 +53,7 @@ Requires:       mysql
 Requires:       php-gd
 Requires:       php-json
 Requires:       php-mbstring
-Requires:       php-mysql
+Requires:       php-mysqlnd
 Requires:       php-posix
 Requires:       php-zip
 #
@@ -82,6 +82,13 @@ cp %{SOURCE4} .
 #%%patch0 -p0
 # git files should not be removed, otherwise nextcloud rise up ntegrity check failure.
 #rm `find . -name ".gitignore" -or -name ".gitkeep"`
+# delete unneeded gitfiles 
+rm -r `find . -name ".gitignore" -or -name ".gitkeep" -or -name ".github"`
+# remove entries in signature.json to prevent integrity check failure
+find . -iname signature.json \
+    -exec sed -i "/\/.gitignore\": ./d" "{}" \;  \
+    -exec sed -i "/\/.gitkeep\": ./d" "{}" \; \
+    -exec sed -i "/\/.github\": ./d" "{}" \;
 
 %build
 
@@ -170,20 +177,31 @@ rm -f %{statedir}/occ_maintenance_mode_during_nextcloud_install
 %defattr(644,root,root,755)
 %exclude %{apache_serverroot}/%{name}/README
 %exclude %{apache_serverroot}/%{name}/README.SELinux
-%exclude %{apache_serverroot}/%{name}/apps
-%exclude %{apache_serverroot}/%{name}/config
-%exclude %{apache_serverroot}/%{name}/data
-%exclude %{apache_serverroot}/%{name}/occ
-%exclude %{apache_serverroot}/%{name}/.user.ini
 %doc README README.SELinux
-%{apache_serverroot}/%{name}
-%attr(-,wwwrun,www) %{apache_serverroot}/%{name}/occ
+#%{apache_serverroot}/%{name}
+%attr(-,%{apache_user},%{apache_group}) %{apache_serverroot}/%{name}/occ
+%{apache_serverroot}/%{name}/3rdparty
+%{apache_serverroot}/%{name}/core
+%{apache_serverroot}/%{name}/l10n
+%{apache_serverroot}/%{name}/lib
+%{apache_serverroot}/%{name}/ocs
+%{apache_serverroot}/%{name}/ocs-provider
+%{apache_serverroot}/%{name}/resources
+%{apache_serverroot}/%{name}/settings
+%{apache_serverroot}/%{name}/themes
+%{apache_serverroot}/%{name}/updater
+%{apache_serverroot}/%{name}/AUTHORS
+%{apache_serverroot}/%{name}/db_structure.xml
+%{apache_serverroot}/%{name}/*.php
+%{apache_serverroot}/%{name}/index.html
+%{apache_serverroot}/%{name}/robots.txt
+%{apache_serverroot}/%{name}/.htaccess
 %config(noreplace) %{apache_confdir}/nextcloud.conf
 %config(noreplace) %{apache_serverroot}/%{name}/.user.ini
-%defattr(664,wwwrun,www,775)
+%defattr(664,%{apache_user},%{apache_group},775)
 %{apache_serverroot}/%{name}/apps
-%defattr(660,wwwrun,www,770)
-%{apache_serverroot}/%{name}/config
+%defattr(660,%{apache_user},%{apache_group},770)
+%attr(770,,%{apache_user},%{apache_group}) %{apache_serverroot}/%{name}/config
 %{apache_serverroot}/%{name}/data
 
 %changelog
