@@ -31,8 +31,20 @@ srpm: prepare ## Build a source rpm
 	echo -e "Package saved to: \e[31m`ls SRPMS/$(NAME)-$(VERSION)*.src.rpm`\e[0m"
 	$(DONE)
 
+minimalsrpm: prepare ## Build a source rpm
+	mock --buildsrpm --spec=$(CWD)/SPECS/$(NAME).spec --sources=$(CWD)/SOURCES/ --resultdir=$(CWD)/SRPMS --define "__version $(VERSION)" --define "__release $(BUILD_NUMBER)" --rpmbuild-opts "--without apache"
+	rm -rf SRPMS/*.log
+	echo -e "Package saved to: \e[31m`ls SRPMS/$(NAME)-$(VERSION)*.src.rpm`\e[0m"
+	$(DONE)
+
 rpm: srpm ## Build an rpm from the sourcerpm
 	mock --rebuild $(CWD)/SRPMS/$(NAME)*.src.rpm --resultdir=$(CWD)/RPMS/ --define "__version $(VERSION)" --define "__release $(BUILD_NUMBER)"
+	cp RPMS/$(NAME)-$(VERSION)*.noarch.rpm pkg/
+	echo -e "Package saved to: \e[31m`ls RPMS/$(NAME)-$(VERSION)*.noarch.rpm`\e[0m"
+	$(DONE)
+
+minimalrpm: minimalsrpm ## Build an rpm from the sourcerpm
+	mock --rebuild $(CWD)/SRPMS/$(NAME)*.src.rpm --resultdir=$(CWD)/RPMS/ --define "__version $(VERSION)" --define "__release $(BUILD_NUMBER)" --rpmbuild-opts "--without apache"
 	cp RPMS/$(NAME)-$(VERSION)*.noarch.rpm pkg/
 	echo -e "Package saved to: \e[31m`ls RPMS/$(NAME)-$(VERSION)*.noarch.rpm`\e[0m"
 	$(DONE)
