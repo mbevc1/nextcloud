@@ -28,8 +28,8 @@
 %define statedir	/run
 %endif
 
-%define base_version 12.0.0
-%define rel %(echo 2)
+%define base_version 12.0.2
+%define rel %(echo 1)
 
 Name:           nextcloud
 Version:        %{base_version}
@@ -45,6 +45,10 @@ Source3:        README.SELinux
 Source4:        robots.txt
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildArch:      noarch
+
+# For the systemd macros
+%{?systemd_requires}
+BuildRequires:  systemd
 
 BuildRequires:  unzip
 #
@@ -72,6 +76,11 @@ Requires:       php-xml
 %description
 Nextcloud is a suite of client-server software for creating file
 hosting services and using them.
+It gives you universal access to your files through a web interface or
+WebDAV. It also provides a platform to easily view & sync your contacts,
+calendars and bookmarks across all your devices and enables basic editing right
+on the web. NextCloud is extendable via a simple but powerful API for
+applications and plugins.
 
 %prep
 %setup -q -n %{name}
@@ -83,12 +92,12 @@ cp %{SOURCE4} .
 # git files should not be removed, otherwise nextcloud rise up ntegrity check failure.
 #rm `find . -name ".gitignore" -or -name ".gitkeep"`
 # delete unneeded gitfiles 
-rm -r `find . -name ".gitignore" -or -name ".gitkeep" -or -name ".github"`
+#rm -r `find . -name ".gitignore" -or -name ".gitkeep" -or -name ".github"`
 # remove entries in signature.json to prevent integrity check failure
-find . -iname signature.json \
-    -exec sed -i "/\/.gitignore\": ./d" "{}" \;  \
-    -exec sed -i "/\/.gitkeep\": ./d" "{}" \; \
-    -exec sed -i "/\/.github\": ./d" "{}" \;
+#find . -iname signature.json \
+#    -exec sed -i "/\/.gitignore\": ./d" "{}" \;  \
+#    -exec sed -i "/\/.gitkeep\": ./d" "{}" \; \
+#    -exec sed -i "/\/.github\": ./d" "{}" \;
 
 %build
 
