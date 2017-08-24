@@ -182,13 +182,43 @@ fi
 rm -f %{statedir}/apache_stopped_during_nextcloud_install
 rm -f %{statedir}/occ_maintenance_mode_during_nextcloud_install
 
+# the selinux policies only cover owncloud right now
+# once this package is accepted pull request for selinux-policy to add
+# these will be made
+#semanage fcontext -a -t httpd_sys_rw_content_t '%{_sysconfdir}/%{name}/config.php' 2>/dev/null || :
+#semanage fcontext -a -t httpd_sys_rw_content_t '%{_sysconfdir}/%{name}' 2>/dev/null || :
+#semanage fcontext -a -t httpd_sys_rw_content_t '%{_localstatedir}/lib/%{name}(/.*)?' 2>/dev/null || :
+#restorecon -R %{_sysconfdir}/%{name} || :
+#restorecon -R %{_localstatedir}/lib/%{name} || :
+semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/data(/.*)?' 2>/dev/null || :
+semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/config(/.*)?' 2>/dev/null || :
+semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/apps(/.*)?' 2>/dev/null || :
+semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/.htaccess' 2>/dev/null || :
+semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/.user.ini' 2>/dev/null || :
+
+restorecon -Rv '%{oc_dir}' || :
+
+%postun
+if [ $1 -eq 0  ] ; then
+#semanage fcontext -d -t httpd_sys_rw_content_t '%{_sysconfdir}/%{name}/config.php' 2>/dev/null || :
+#semanage fcontext -d -t httpd_sys_rw_content_t '%{_sysconfdir}/%{name}' 2>/dev/null || :
+#semanage fcontext -d -t httpd_sys_rw_content_t '%{_localstatedir}/lib/%{name}(/.*)?' 2>/dev/null || :
+semanage fcontext -d '%{oc_dir}/data(/.*)?'
+semanage fcontext -d '%{oc_dir}/config(/.*)?'
+semanage fcontext -d '%{oc_dir}/apps(/.*)?'
+semanage fcontext -d '%{oc_dir}/.htaccess'
+semanage fcontext -d '%{oc_dir}/.user.ini'
+
+restorecon -Rv '%{oc_dir}' || :
+fi
+
 %files
 %defattr(644,root,root,755)
 %exclude %{apache_serverroot}/%{name}/README
 %exclude %{apache_serverroot}/%{name}/README.SELinux
 %doc README README.SELinux
-#%{apache_serverroot}/%{name}
-%attr(-,%{apache_user},%{apache_group}) %{apache_serverroot}/%{name}/occ
+%dir %{apache_serverroot}/%{name}
+%attr(755,%{apache_user},%{apache_group}) %{apache_serverroot}/%{name}/occ
 %{apache_serverroot}/%{name}/3rdparty
 %{apache_serverroot}/%{name}/core
 %{apache_serverroot}/%{name}/l10n
