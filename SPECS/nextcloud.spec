@@ -28,7 +28,7 @@
 %define statedir	/run
 %endif
 
-%define base_version 12.0.2
+%define base_version 12.0.3
 %define rel %(echo 1)
 
 Name:           nextcloud
