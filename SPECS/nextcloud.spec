@@ -29,7 +29,7 @@
 %endif
 
 %define base_version 12.0.4
-%define rel %(echo 1)
+%define rel %(echo 2)
 
 Name:           nextcloud
 Version:        %{base_version}
@@ -195,6 +195,7 @@ semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/config(/.*)?' 2>/dev/n
 semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/apps(/.*)?' 2>/dev/null || :
 semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/.htaccess' 2>/dev/null || :
 semanage fcontext -a -t httpd_sys_rw_content_t '%{oc_dir}/.user.ini' 2>/dev/null || :
+semanage fcontext -a -t httpd_sys_content_t '%{oc_dir}/3rdparty(/.*)?' 2>/dev/null || :
 
 restorecon -Rv '%{oc_dir}' || :
 
@@ -208,6 +209,7 @@ semanage fcontext -d '%{oc_dir}/config(/.*)?'
 semanage fcontext -d '%{oc_dir}/apps(/.*)?'
 semanage fcontext -d '%{oc_dir}/.htaccess'
 semanage fcontext -d '%{oc_dir}/.user.ini'
+semanage fcontext -d '%{oc_dir}/3rdparty(/.*)?'
 
 restorecon -Rv '%{oc_dir}' || :
 fi
@@ -244,4 +246,6 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Wed Dec 13 2017 Marko Bevc <marko@bevc.net> - 12.0.4-2
+- Update SELinux context.
 
