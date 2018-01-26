@@ -28,8 +28,8 @@
 %define statedir	/run
 %endif
 
-%define base_version 12.0.4
-%define rel %(echo 2)
+%define base_version 12.0.5
+%define rel %(echo 1)
 
 Name:           nextcloud
 Version:        %{base_version}
@@ -246,6 +246,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Fri Jan 26 2018 Marko Bevc <marko@bevc.net> - 12.0.5-1
+- Update version.
+
 * Wed Dec 13 2017 Marko Bevc <marko@bevc.net> - 12.0.4-2
 - Update SELinux context.
 
