@@ -28,7 +28,7 @@
 %define statedir	/run
 %endif
 
-%define base_version 13.0.0
+%define base_version 13.0.1
 %define rel %(echo 1)
 
 Name:           nextcloud
@@ -223,7 +223,7 @@ fi
 %attr(755,%{apache_user},%{apache_group}) %{apache_serverroot}/%{name}/occ
 %{apache_serverroot}/%{name}/3rdparty
 %{apache_serverroot}/%{name}/core
-%{apache_serverroot}/%{name}/l10n
+#%{apache_serverroot}/%{name}/l10n
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
@@ -245,6 +245,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Fri Mar 23 2018 Marko Bevc <marko@bevc.net> - 13.0.1-1
+- Update version.
+
 * Thu Mar 08 2018 Marko Bevc <marko@bevc.net> - 13.0.0-1
 - Update version.
 
