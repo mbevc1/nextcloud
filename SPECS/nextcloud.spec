@@ -5,6 +5,8 @@
 # Based on SuSE packaging: https://build.opensuse.org/package/show/server:php:applications/nextcloud
 #
 
+%{!?_with_apache: %{!?_without_apache: %define _with_apache --with-apache}}
+
 %if 0%{?fedora_ver} || 0%{?rhel_ver} || 0%{?centos_ver}
 %define apache_serverroot /var/www/html
 %define apache_confdir /etc/httpd/conf.d
@@ -70,7 +72,7 @@ Requires:       php-xml
 %endif
 #
 #
-#Recommends:     php-imagick 
+#Recommends:     php-imagick
 #Recommends:     php-sqlite
 
 %description
@@ -87,17 +89,6 @@ applications and plugins.
 cp %{SOURCE2} .
 cp %{SOURCE3} .
 cp %{SOURCE4} .
-#cp %{SOURCE5} .
-#%%patch0 -p0
-# git files should not be removed, otherwise nextcloud rise up ntegrity check failure.
-#rm `find . -name ".gitignore" -or -name ".gitkeep"`
-# delete unneeded gitfiles 
-#rm -r `find . -name ".gitignore" -or -name ".gitkeep" -or -name ".github"`
-# remove entries in signature.json to prevent integrity check failure
-#find . -iname signature.json \
-#    -exec sed -i "/\/.gitignore\": ./d" "{}" \;  \
-#    -exec sed -i "/\/.gitkeep\": ./d" "{}" \; \
-#    -exec sed -i "/\/.github\": ./d" "{}" \;
 
 %build
 
@@ -116,10 +107,14 @@ if [ ! -f $idir/robots.txt ]; then
   install -p -D -m 644 %{SOURCE4} $idir/robots.txt
 fi
 
+%if %{?_with_apache:1}%{!?_with_apache:0}
+
 # create the AllowOverride directive
 install -p -D -m 644 %{SOURCE1} $RPM_BUILD_ROOT/%{apache_confdir}/nextcloud.conf
 ocpath="%{apache_serverroot}/%{name}"
 sed -i -e"s|@DATAPATH@|${ocpath}|g" $RPM_BUILD_ROOT/%{apache_confdir}/nextcloud.conf
+
+%endif
 
 # not needed for distro packages
 rm -f ${idir}/indie.json
@@ -129,9 +124,9 @@ rm -f ${idir}/indie.json
 # https://github.com/nextcloud
 #
 # We don't do this for new installs. Only for updates.
-# If the first argument to pre is 1, the RPM operation is an initial installation. If the argument is 2, 
+# If the first argument to pre is 1, the RPM operation is an initial installation. If the argument is 2,
 # the operation is an upgrade from an existing version to a new one.
-if [ $1 -gt 1 -a ! -s %{statedir}/apache_stopped_during_nextcloud_install ]; then	
+if [ $1 -gt 1 -a ! -s %{statedir}/apache_stopped_during_nextcloud_install ]; then
   echo "%{name} update: Checking for running Apache"
   # FIXME: this above should make it idempotent --
   # it does not work.
@@ -236,7 +231,9 @@ fi
 %{apache_serverroot}/%{name}/index.html
 %{apache_serverroot}/%{name}/robots.txt
 %{apache_serverroot}/%{name}/.htaccess
+%if %{?_with_apache:1}%{!?_with_apache:0}
 %config(noreplace) %{apache_confdir}/nextcloud.conf
+%endif
 %config(noreplace) %{apache_serverroot}/%{name}/.user.ini
 %defattr(664,%{apache_user},%{apache_group},775)
 %{apache_serverroot}/%{name}/apps
