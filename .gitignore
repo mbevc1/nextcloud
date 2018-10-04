@@ -1,7 +1,7 @@
 *~
 *.log
-SOURCES/*.bz2
-SOURCES/*.gz
-SRPMS
-RPMS
-t/
+rpmbuild/SOURCES/*.bz2
+rpmbuild/SOURCES/*.gz
+rpmbuild/cache
+rpmbuild/output
+pkg/

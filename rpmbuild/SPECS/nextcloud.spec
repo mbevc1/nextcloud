@@ -30,7 +30,7 @@
 %define statedir	/run
 %endif
 
-%define base_version 13.0.6
+%define base_version 14.0.1
 %define rel %(echo 1)
 
 Name:           nextcloud
@@ -222,6 +222,7 @@ fi
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
+%{apache_serverroot}/%{name}/ocm-provider
 %{apache_serverroot}/%{name}/resources
 %{apache_serverroot}/%{name}/settings
 %{apache_serverroot}/%{name}/themes
@@ -242,6 +243,12 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Thu Oct 04 2018 Marko Bevc <marko@bevc.net> - 14.0.1-1
+- Update to version 14.
+
+* Thu Oct 04 2018 Marko Bevc <marko@bevc.net> - 13.0.6-2
+- Switch to Docker build.
+
 * Sun Sep 02 2018 Marko Bevc <marko@bevc.net> - 13.0.6-1
 - Update version.
 
