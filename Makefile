@@ -89,6 +89,7 @@ signrepo: ## Sign the repo key
 build-docker: ## Build docker image
 	echo -e "==> $(YELLOW)Build Docker images$(NO_COLOR)"
 	docker build --network host --pull --force-rm \
+	    --build-arg UID=$$(id -u) \
 	    -f Dockerfile -t bevc/$(NAME) \
             .
 	$(DONE)

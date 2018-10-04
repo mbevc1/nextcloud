@@ -1,6 +1,9 @@
 FROM centos:7
 MAINTAINER DevOps <ops@bevc.net>
 
+ARG UNAME=builder
+ARG UID=1000
+
 RUN yum -y --setopt="tsflags=nodocs" update && \
 	yum -y --setopt="tsflags=nodocs" install epel-release mock rpm-sign expect \
         bash ca-certificates git make yum-utils rpmdevtools && \
@@ -8,7 +11,7 @@ RUN yum -y --setopt="tsflags=nodocs" update && \
 	rm -rf /var/cache/yum/
 
 #Configure users
-RUN useradd -u 1000 -G mock builder && \
+RUN useradd -u $UID -G mock $UNAME && \
 	chmod g+w /etc/mock/*.cfg
 
 VOLUME ["/rpmbuild"]
@@ -28,6 +31,6 @@ RUN chmod +x /build-rpm.sh
 ADD ./rpm-sign.exp /rpm-sign.exp
 RUN chmod +x /rpm-sign.exp
 
-USER builder
-ENV HOME /home/builder
+USER $UNAME
+ENV HOME /home/$UNAME
 CMD ["/build-rpm.sh"]

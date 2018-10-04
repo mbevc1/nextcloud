@@ -86,6 +86,11 @@ elif [ ! -z "$SPEC_FILE" ]; then
         echo "========================================================================"
         # Download dependencies
         spectool -C $MOUNT_POINT/$SOURCES -g $MOUNT_POINT/$SPEC_FILE
+        if [ $? -ne 0 ]; then
+            echo "Cannot obtain required source package!"
+            exit $?
+        fi
+
         if [ ! -z "$NO_CLEANUP" ]; then
           # do not cleanup chroot between both mock calls as 1st does not alter it
           echo "$MOCK_BIN $DEFINE_CMD -r $MOCK_CONFIG --buildsrpm --spec=$MOUNT_POINT/$SPEC_FILE --sources=$MOUNT_POINT/$SOURCES --resultdir=$OUTPUT_FOLDER --no-cleanup-after" > $OUTPUT_FOLDER/script-test.sh
@@ -110,5 +115,9 @@ if [ ! -z "$SIGNATURE" ]; then
 else
 	echo "No RPMs signature requested"
 fi
+
+# Restore proper permissions
+#TO_CHOWN=( "${MOUNT_POINT}/"{cache,output} )
+#chown -R --reference="${MOUNT_POINT}" "${TO_CHOWN[@]}"
 
 echo "Build finished. Check results inside the mounted volume folder."
