@@ -222,12 +222,15 @@ fi
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
+#added in 14.0.3
 %{apache_serverroot}/%{name}/ocm-provider
 %{apache_serverroot}/%{name}/resources
 %{apache_serverroot}/%{name}/settings
 %{apache_serverroot}/%{name}/themes
 %{apache_serverroot}/%{name}/updater
 %{apache_serverroot}/%{name}/AUTHORS
+#added in 14.0.3
+%{apache_serverroot}/%{name}/COPYING
 %{apache_serverroot}/%{name}/*.php
 %{apache_serverroot}/%{name}/index.html
 %{apache_serverroot}/%{name}/robots.txt
@@ -243,7 +246,10 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
-* Thu Oct 12 2018 Marko Bevc <marko@bevc.net> - 14.0.3-1
+* Sat Oct 13 2018 Marko Bevc <marko@bevc.net> - 13.0.7-1
+- Update version 13.
+
+* Fri Oct 12 2018 Marko Bevc <marko@bevc.net> - 14.0.3-1
 - Update to latest version.
 
 * Thu Oct 04 2018 Marko Bevc <marko@bevc.net> - 14.0.1-1
