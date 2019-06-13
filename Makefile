@@ -90,7 +90,7 @@ build-docker: ## Build docker image
 	echo -e "==> $(YELLOW)Build Docker images$(NO_COLOR)"
 	docker build --network host --pull --force-rm \
 	    --build-arg UID=$$(id -u) \
-	    -f Dockerfile -t bevc/$(NAME) \
+	    -f Dockerfile -t mbevc1/$(NAME) \
             .
 	$(DONE)
 
@@ -103,7 +103,7 @@ pkg-docker: build-docker clean-docker clean-build ## Package RPM using docker im
 	    -e SPEC_FILE=SPECS/$(NAME).spec \
 	    -e MOCK_DEFINES="VERSION=$(VERSION) RELEASE=$(BUILD_NUMBER) ANYTHING_ELSE=1" \
 	    --rm -v ${PWD}/rpmbuild:/rpmbuild \
-	    bevc/$(NAME)
+	    mbevc1/$(NAME)
 	    #--workdir=/src
 	echo -e "==> $(GREEN)Moving artifact $(RED)$$(basename $$(ls rpmbuild/output/$(MOCK_CONFIG)/*.noarch.rpm))$(GREEN) to $(YELLOW)pkg/$(GREEN) folder...$(NO_COLOR)"
 	mv rpmbuild/output/$(MOCK_CONFIG)/*.noarch.rpm pkg/
@@ -136,6 +136,6 @@ docker-test: ## Run tests in a Docker container
 	echo -e "==> $(YELLOW)Running test: ${TEST} in Docker$(NO_COLOR)"
 	docker run --network bridge -v ${PWD}:/src --workdir=/src -e LANG=en_US.UTF-8 \
             -e DB_DATABASE=${DB_DATABASE} -e DB_USERNAME=${DB_USERNAME} -e DB_PASSWORD=${DB_PASSWORD} \
-            bevc/nextcloud make ${TEST}
+            mbevc1/nextcloud make ${TEST}
 	$(MAKE) docker-cleanup
 	$(DONE)
