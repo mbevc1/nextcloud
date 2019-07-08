@@ -1,5 +1,5 @@
 FROM centos:7
-MAINTAINER DevOps <ops@bevc.net>
+LABEL maintainer="DevOps <ops@bevc.net>"
 
 ARG UNAME=builder
 ARG UID=1000
