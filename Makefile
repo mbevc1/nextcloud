@@ -31,7 +31,7 @@ ifneq ($(NTOOLS), 2)
 	@yum install -y "$(TOOLS)"
 endif
 	mkdir -p SRPMS RPMS pkg
-	spectool -C rpmbuild/SOURCES/ -g $(CWD)/rpmbuild/SPECS/$(NAME).spec
+	spectool -C $(CWD)/rpmbuild/SOURCES/ -g $(CWD)/rpmbuild/SPECS/$(NAME).spec
 	$(DONE)
 
 srpm: prepare ## Build a source rpm
