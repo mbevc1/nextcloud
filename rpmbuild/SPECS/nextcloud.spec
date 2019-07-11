@@ -30,7 +30,7 @@
 %define statedir	/run
 %endif
 
-%define base_version 16.0.2
+%define base_version 16.0.3
 %define rel %(echo 1)
 
 Name:           nextcloud
@@ -246,6 +246,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Tue Jul 11 2019 Tobia De Koninck <LEDfan@users.noreply.github.com> - 16.0.3-1
+- Update version.
+
 * Mon Jul 8 2019 Tobia De Koninck <LEDfan@users.noreply.github.com> - 16.0.2-1
 - Update version.
 
