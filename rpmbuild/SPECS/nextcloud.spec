@@ -20,8 +20,8 @@
 %define apache_group www
 %endif
 
-%define oc_user 	%{apache_user}
-%define oc_dir  	%{apache_serverroot}/%{name}
+%define oc_user         %{apache_user}
+%define oc_dir          %{apache_serverroot}/%{name}
 %define ocphp_bin	/usr/bin
 
 %if 0%{?rhel} == 600 || 0%{?rhel_version} == 600 || 0%{?centos_version} == 600
@@ -30,7 +30,7 @@
 %define statedir	/run
 %endif
 
-%define base_version 16.0.4
+%define base_version 16.0.5
 %define rel %(echo 1)
 
 Name:           nextcloud
@@ -246,6 +246,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Sun Oct 13 2019 Marko Bevc <marko@bevc.net> - 16.0.5-1
+- Update version and upstream bug fixes.
+
 * Wed Aug 28 2019 Marko Bevc <marko@bevc.net> - 16.0.4-1
 - Update version and bug fixes.
 

@@ -96,7 +96,7 @@ build-docker: ## Build docker image
 
 pkg-docker: build-docker clean-docker clean-build ## Package RPM using docker image
 	echo -e "==> $(GREEN)Build the RPM package$(NO_COLOR)"
-	mkdir -p pkg 
+	mkdir -p pkg
 	# Build RPM package
 	docker run --cap-add=SYS_ADMIN --network host \
 	    -e MOCK_CONFIG=$(MOCK_CONFIG) -e SOURCES=SOURCES/ \
