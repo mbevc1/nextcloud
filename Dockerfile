@@ -1,3 +1,4 @@
+# vim:ft=dockerfile
 FROM centos:7
 LABEL maintainer="DevOps <ops@bevc.net>"
 
@@ -6,13 +7,14 @@ ARG UID=1000
 
 RUN yum -y --setopt="tsflags=nodocs" update && \
 	yum -y --setopt="tsflags=nodocs" install epel-release mock rpm-sign expect \
-        bash ca-certificates git make yum-utils rpmdevtools && \
+        bash ca-certificates git make yum-utils rpmdevtools sudo && \
 	yum clean all && \
 	rm -rf /var/cache/yum/
 
 #Configure users
-RUN useradd -u $UID -G mock $UNAME && \
-	chmod g+w /etc/mock/*.cfg
+RUN useradd -u $UID -G mock,users,wheel $UNAME && \
+    chmod g+w /etc/mock/*.cfg && \
+    echo "$UNAME ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 VOLUME ["/rpmbuild"]
 

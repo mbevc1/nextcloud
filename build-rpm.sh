@@ -117,7 +117,7 @@ else
 fi
 
 # Restore proper permissions
-#TO_CHOWN=( "${MOUNT_POINT}/"{cache,output} )
-#chown -R --reference="${MOUNT_POINT}" "${TO_CHOWN[@]}"
+TO_CHOWN=( "${MOUNT_POINT}/"{cache,output} )
+sudo chown -R --reference="${MOUNT_POINT}" "${TO_CHOWN[@]}"
 
 echo "Build finished. Check results inside the mounted volume folder."
