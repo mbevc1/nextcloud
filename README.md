@@ -4,20 +4,17 @@ Nextcloud community contributed RPM packaging.
 
 ## Usage
 
-To build RPM using Docker:
+To build RPM package (will use Docker):
 ```bash
-make pkg-docker
+make package
 ```
 
-To build RPM using local Mock installation:
+To build RPM using local devtool:
 ```make
-make rpm
+make buildev
 ```
 
 To get other options you can use: `make help`
-
-Make sure to include the Gzip middleware above any other middleware that alter
-the response body.
 
 ## Tips
 

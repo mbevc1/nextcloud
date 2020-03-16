@@ -30,12 +30,12 @@
 %define statedir	/run
 %endif
 
-%define base_version 17.0.3
+%define base_version 17.0.4
 %define rel %(echo 1)
 
 Name:           nextcloud
 Version:        %{base_version}
-Release:        %{rel}%{?dist}
+Release:        %{_release}%{?dist}
 Summary:        File hosting service
 License:        AGPL-3.0
 Group:          Productivity/Networking/Web/Utilities
@@ -246,6 +246,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Mon Mar 16 2020 Marko Bevc <marko@bevc.net> - 17.0.4-1
+- Update version and upstream bug fixes.
+
 * Mon Feb 10 2020 Marko Bevc <marko@bevc.net> - 17.0.3-1
 - Update version and upstream bug fixes.
 
