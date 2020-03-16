@@ -30,7 +30,7 @@
 %define statedir	/run
 %endif
 
-%define base_version 17.0.4
+%define base_version 18.0.2
 %define rel %(echo 1)
 
 Name:           nextcloud
@@ -218,18 +218,14 @@ fi
 %attr(755,%{apache_user},%{apache_group}) %{apache_serverroot}/%{name}/occ
 %{apache_serverroot}/%{name}/3rdparty
 %{apache_serverroot}/%{name}/core
-#%{apache_serverroot}/%{name}/l10n
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
-#added in 14.0.3
 %{apache_serverroot}/%{name}/ocm-provider
 %{apache_serverroot}/%{name}/resources
-%{apache_serverroot}/%{name}/settings
 %{apache_serverroot}/%{name}/themes
 %{apache_serverroot}/%{name}/updater
 %{apache_serverroot}/%{name}/AUTHORS
-#added in 14.0.3
 %{apache_serverroot}/%{name}/COPYING
 %{apache_serverroot}/%{name}/*.php
 %{apache_serverroot}/%{name}/index.html
@@ -246,6 +242,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Mon Mar 16 2020 Marko Bevc <marko@bevc.net> - 18.0.2-1
+- Major version bump https://nextcloud.com/changelog/#latest18.
+
 * Mon Mar 16 2020 Marko Bevc <marko@bevc.net> - 17.0.4-1
 - Update version and upstream bug fixes.
 
