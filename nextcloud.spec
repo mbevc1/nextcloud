@@ -30,7 +30,7 @@
 %define statedir	/run
 %endif
 
-%define base_version 18.0.6
+%define base_version 19.0.0
 %define rel %(echo 1)
 
 Name:           nextcloud
@@ -242,6 +242,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Fri Jun 12 2020 Marko Bevc <marko@bevc.net> - 19.0.0-1
+- Update major version.
+
 * Tue Jun 09 2020 Marko Bevc <marko@bevc.net> - 18.0.6-1
 - Update minor version and upstream bug fixes.
 
