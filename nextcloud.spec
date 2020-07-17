@@ -254,7 +254,7 @@ fi
 * Tue Apr 28 2020 Marko Bevc <marko@bevc.net> - 18.0.4-1
 - Update version and upstream bug fixes.
 
-* Mon Mar 28 2020 Marko Bevc <marko@bevc.net> - 18.0.3-1
+* Sat Mar 28 2020 Marko Bevc <marko@bevc.net> - 18.0.3-1
 - Update version and upstream bug fixes.
 
 * Mon Mar 16 2020 Marko Bevc <marko@bevc.net> - 18.0.2-1
