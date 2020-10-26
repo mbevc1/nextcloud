@@ -242,7 +242,7 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
-* Fri Oct 09 2020 Marko Bevc <marko@bevc.net> - 20.0.1-1
+* Mon Oct 26 2020 Marko Bevc <marko@bevc.net> - 20.0.1-1
 - Update minor version and upstream fixes.
 
 * Fri Oct 09 2020 Marko Bevc <marko@bevc.net> - 20.0.0-1
