@@ -13,6 +13,7 @@
 %define apache_user apache
 %define apache_group apache
 %define __jar_repack 0
+%define _binary_payload w9.xzdio
 %else
 %define apache_serverroot /var/www
 %define apache_confdir /etc/httpd/conf.d
