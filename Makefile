@@ -7,9 +7,9 @@ endif
 SHELL=bash
 CWD:=$(shell pwd -P)
 NAME=nextcloud
-SPEC_VER:=$(shell cat nextcloud.spec | grep "define base_version" | awk '{print $$3}')
+#SPEC_VER:=$(shell cat nextcloud.spec | grep "define base_version" | awk '{print $$3}')
 BUILD_NUMBER?=1
-VERSION?=$(SPEC_VER)
+VERSION?=20.0.4
 RELEASE?=$(BUILD_NUMBER)
 
 SPEC:=$(shell ls *.spec)

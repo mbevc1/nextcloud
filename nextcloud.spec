@@ -31,11 +31,13 @@
 %define statedir	/run
 %endif
 
-%define base_version 20.0.4
+%{!?_version: %define _version 20.0.4}
+%{!?_release: %define _release 1}
+
 %define rel %(echo 1)
 
 Name:           nextcloud
-Version:        %{base_version}
+Version:        %{_version}
 Release:        %{_release}%{?dist}
 Summary:        File hosting service
 License:        AGPL-3.0
@@ -243,6 +245,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Mon Jan 04 2021 Marko Bevc <marko@bevc.net> - 20.0.x
+- Update minor version and upstream fixes.
+
 * Fri Dec 18 2020 Marko Bevc <marko@bevc.net> - 20.0.4-1
 - Update minor version and upstream fixes.
 
