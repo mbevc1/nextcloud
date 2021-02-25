@@ -31,7 +31,7 @@
 %define statedir	/run
 %endif
 
-%{!?_version: %define _version 20.0.4}
+%{!?_version: %define _version 21.0.0}
 %{!?_release: %define _release 1}
 
 %define rel %(echo 1)
@@ -245,6 +245,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Thu  Feb 25 2021 Kris Buytaert <kris@inuits.eu> - 21.0.0
+- Update major version 
+
 * Mon Jan 04 2021 Marko Bevc <marko@bevc.net> - 20.0.x
 - Update minor version and upstream fixes.
 
