@@ -31,7 +31,7 @@
 %define statedir	/run
 %endif
 
-%{!?_version: %define _version 21.0.0}
+%{!?_version: %define _version 23.0.4}
 %{!?_release: %define _release 1}
 
 %define rel %(echo 1)
@@ -92,6 +92,7 @@ applications and plugins.
 cp %{SOURCE2} .
 cp %{SOURCE3} .
 cp %{SOURCE4} .
+echo "Building version --%{_version}--"
 
 %build
 
@@ -221,6 +222,9 @@ fi
 %attr(755,%{apache_user},%{apache_group}) %{apache_serverroot}/%{name}/occ
 %{apache_serverroot}/%{name}/3rdparty
 %{apache_serverroot}/%{name}/core
+%if "%{?_version}" >= "24.0.0"
+%{apache_serverroot}/%{name}/dist
+%endif
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
@@ -245,8 +249,11 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
-* Thu  Feb 25 2021 Kris Buytaert <kris@inuits.eu> - 21.0.0
-- Update major version 
+* Fri May 6 2022 Marko Bevc <marko@bevc.net> - 24.0.x
+- Add support for v24
+
+* Thu Feb 25 2021 Kris Buytaert <kris@inuits.eu> - 21.0.0
+- Update major version
 
 * Mon Jan 04 2021 Marko Bevc <marko@bevc.net> - 20.0.x
 - Update minor version and upstream fixes.
@@ -386,4 +393,3 @@ fi
 
 * Wed Dec 13 2017 Marko Bevc <marko@bevc.net> - 12.0.4-2
 - Update SELinux context.
-
