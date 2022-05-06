@@ -18,7 +18,8 @@ To get other options you can use: `make help`
 
 ## Tips
 
-Produced RPM are saved to `pkg/` folder.
+Produced RPM are saved to `pkg/` folder. For SSO solution Nextcloud can use projects such as:
+Keycloak or Authentik.
 
 ## Prebuild artefacts
 
