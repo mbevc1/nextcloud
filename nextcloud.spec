@@ -18,9 +18,7 @@
 #               "w9.bzdio"      bzip2 level 9.
 #               "w7.xzdio"      xz level 7, xz's default.
 #               "w7.lzdio"      lzma-alone level 7, lzma's default
-#
-#%_source_payload       w9.gzdio
-#%_binary_payload       w9.gzdio
+%define _source_payload w9.xzdio
 %define _binary_payload w9.xzdio
 %else
 %define apache_serverroot /var/www
