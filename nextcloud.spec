@@ -257,6 +257,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Mon Nov 7 2022 Marko Bevc <marko@bevc.net> - 25.0.x
+- Add support for v25
+
 * Fri May 6 2022 Marko Bevc <marko@bevc.net> - 24.0.x
 - Add support for v24
 
