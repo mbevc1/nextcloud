@@ -13,6 +13,14 @@
 %define apache_user apache
 %define apache_group apache
 %define __jar_repack 0
+#       Compression type and level for source/binary package payloads.
+#               "w9.gzdio"      gzip level 9 (default).
+#               "w9.bzdio"      bzip2 level 9.
+#               "w7.xzdio"      xz level 7, xz's default.
+#               "w7.lzdio"      lzma-alone level 7, lzma's default
+#
+#%_source_payload       w9.gzdio
+#%_binary_payload       w9.gzdio
 %define _binary_payload w9.xzdio
 %else
 %define apache_serverroot /var/www
