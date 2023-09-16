@@ -231,6 +231,12 @@ fi
 %if "%{?_version}" >= "24.0.0"
 %{apache_serverroot}/%{name}/dist
 %endif
+%if "%{?_version}" >= "27.1.0"
+%{apache_serverroot}/%{name}/composer.json
+%{apache_serverroot}/%{name}/composer.lock
+%{apache_serverroot}/%{name}/package-lock.json
+%{apache_serverroot}/%{name}/package.json
+%endif
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
@@ -255,6 +261,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Sat Sep 16 2023 Marko Bevc <marko@bevc.net> - 27.1.x
+- Add support for v27.1
+
 * Mon Nov 7 2022 Marko Bevc <marko@bevc.net> - 25.0.x
 - Add support for v25
 
