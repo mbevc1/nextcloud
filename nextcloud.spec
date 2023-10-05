@@ -240,7 +240,7 @@ fi
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
-%{apache_serverroot}/%{name}/ocm-provider
+#%{apache_serverroot}/%{name}/ocm-provider
 %{apache_serverroot}/%{name}/resources
 %{apache_serverroot}/%{name}/themes
 %{apache_serverroot}/%{name}/updater
