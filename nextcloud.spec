@@ -37,7 +37,7 @@
 %define statedir	/run
 %endif
 
-%{!?_version: %define _version 23.0.4}
+%{!?_version: %define _version 29.0.4}
 %{!?_release: %define _release 1}
 
 %define rel %(echo 1)
@@ -240,7 +240,6 @@ fi
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
-#%{apache_serverroot}/%{name}/ocm-provider
 %{apache_serverroot}/%{name}/resources
 %{apache_serverroot}/%{name}/themes
 %{apache_serverroot}/%{name}/updater

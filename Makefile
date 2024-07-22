@@ -9,7 +9,7 @@ CWD:=$(shell pwd -P)
 NAME=nextcloud
 #SPEC_VER:=$(shell cat nextcloud.spec | grep "define base_version" | awk '{print $$3}')
 BUILD_NUMBER?=1
-VERSION?=23.0.4
+VERSION?=29.0.4
 RELEASE?=$(BUILD_NUMBER)
 
 SPEC:=$(shell ls *.spec)
