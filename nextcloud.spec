@@ -239,6 +239,7 @@ fi
 %endif
 %if "%{?_version}" >= "30.0.0"
 %{apache_serverroot}/%{name}/LICENSES
+%{apache_serverroot}/%{name}/.reuse
 %endif
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
