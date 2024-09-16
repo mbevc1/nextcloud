@@ -108,6 +108,7 @@ mkdir -p $idir
 mkdir -p $idir/data
 mkdir -p $idir/search
 cp -aRf * $idir
+cp -aRf .reuse $idir
 cp -aRf .htaccess $idir
 cp -aRf .user.ini $idir
 # $idir/l10n to disappear in future
