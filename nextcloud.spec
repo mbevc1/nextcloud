@@ -37,7 +37,7 @@
 %define statedir	/run
 %endif
 
-%{!?_version: %define _version 29.0.4}
+%{!?_version: %define _version 30.0.0}
 %{!?_release: %define _release 1}
 
 %define rel %(echo 1)
@@ -237,6 +237,9 @@ fi
 %{apache_serverroot}/%{name}/package-lock.json
 %{apache_serverroot}/%{name}/package.json
 %endif
+%if "%{?_version}" >= "30.0.0"
+%{apache_serverroot}/%{name}/LICENSES
+%endif
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
 %{apache_serverroot}/%{name}/ocs-provider
@@ -260,6 +263,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Mon Sep 16 2024 Marko Bevc <marko@bevc.net> - 30.0.x
+- Add support for v30.0
+
 * Sat Sep 16 2023 Marko Bevc <marko@bevc.net> - 27.1.x
 - Add support for v27.1
 
