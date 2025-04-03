@@ -265,6 +265,9 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Tue Feb 25 2025 Marko Bevc <marko@bevc.net> - 31.0.x
+- Add support for v31.0
+
 * Mon Sep 16 2024 Marko Bevc <marko@bevc.net> - 30.0.x
 - Add support for v30.0
 
