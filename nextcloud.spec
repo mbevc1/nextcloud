@@ -108,7 +108,7 @@ mkdir -p $idir
 mkdir -p $idir/data
 mkdir -p $idir/search
 cp -aRf * $idir
-#cp -aRf .reuse $idir
+cp -aRf REUSE.toml $idir
 cp -aRf .htaccess $idir
 cp -aRf .user.ini $idir
 # $idir/l10n to disappear in future
@@ -240,7 +240,7 @@ fi
 %endif
 %if "%{?_version}" >= "30.0.0"
 %{apache_serverroot}/%{name}/LICENSES
-#%{apache_serverroot}/%{name}/.reuse
+%{apache_serverroot}/%{name}/REUSE.toml
 %endif
 %{apache_serverroot}/%{name}/lib
 %{apache_serverroot}/%{name}/ocs
