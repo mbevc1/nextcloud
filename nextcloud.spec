@@ -37,7 +37,7 @@
 %define statedir	/run
 %endif
 
-%{!?_version: %define _version 30.0.0}
+%{!?_version: %define _version 33.0.0}
 %{!?_release: %define _release 1}
 
 %define rel %(echo 1)
@@ -73,7 +73,7 @@ Requires:       php-posix
 Requires:       php-zip
 #
 %if 0%{?fedora_version} || 0%{?rhel} || 0%{?rhel_version} || 0%{?centos_version}
-Requires:       php >= 5.6.0
+Requires:       php >= 8.3.0
 Requires:       php-process
 Requires:       php-xml
 #
