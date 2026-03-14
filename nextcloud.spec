@@ -8,7 +8,7 @@
 %{!?_with_apache: %{!?_without_apache: %define _with_apache --with-apache}}
 
 %if 0%{?fedora_ver} || 0%{?rhel_ver} || 0%{?centos_ver}
-%define apache_serverroot /var/www/html
+%define apache_serverroot /var/www
 %define apache_confdir /etc/httpd/conf.d
 %define apache_user apache
 %define apache_group apache
