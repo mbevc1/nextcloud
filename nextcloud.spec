@@ -63,8 +63,9 @@ BuildRequires:  systemd
 
 BuildRequires:  unzip
 #
+Requires:       redhat-release >= 8
 Requires:       curl
-Requires:       mysql
+Requires:       (mysql or mariadb)
 Requires:       php-gd
 Requires:       php-json
 Requires:       php-mbstring
@@ -265,23 +266,26 @@ fi
 %{apache_serverroot}/%{name}/data
 
 %changelog
+* Sat Mar 14 2026 Marko Bevc <marko@bevc.net> - 33.0.x
+- Add support for v33 and its contraints.
+
 * Tue Feb 25 2025 Marko Bevc <marko@bevc.net> - 31.0.x
-- Add support for v31.0
+- Add support for v31.
 
 * Mon Sep 16 2024 Marko Bevc <marko@bevc.net> - 30.0.x
-- Add support for v30.0
+- Add support for v30.
 
 * Sat Sep 16 2023 Marko Bevc <marko@bevc.net> - 27.1.x
-- Add support for v27.1
+- Add support for v27.1.
 
 * Mon Nov 7 2022 Marko Bevc <marko@bevc.net> - 25.0.x
-- Add support for v25
+- Add support for v25.
 
 * Fri May 6 2022 Marko Bevc <marko@bevc.net> - 24.0.x
-- Add support for v24
+- Add support for v24.
 
 * Thu Feb 25 2021 Kris Buytaert <kris@inuits.eu> - 21.0.0
-- Update major version
+- Update major version.
 
 * Mon Jan 04 2021 Marko Bevc <marko@bevc.net> - 20.0.x
 - Update minor version and upstream fixes.
